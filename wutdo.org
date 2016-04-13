@@ -1,0 +1,113 @@
+* TODO Version 0.1 (backbone)
+** TODO Programming
+*** DONE Window creation
+*** DONE Camera movement
+*** DONE Basic gravity 
+*** DONE Collision detection
+*** DONE Key input
+**** DONE Camera movement
+**** DONE Action (e)
+*** DONE Mouse input
+**** DONE Camera rotation
+**** DONE Click events
+*** DONE Music pool
+*** DONE Basic lighting
+*** TODO Picture planes
+*** TODO Obj/mtl loader
+*** TODO Object pool
+*** TODO 3rd person view
+*** TODO Animation loader
+*** TODO Animation renderer
+*** TODO Animation pool
+*** TODO AI
+**** TODO Follow entity
+**** TODO A*
+**** TODO Simple follow
+**** TODO Combat engine
+*** TODO Menu
+*** TODO Scripting
+**** TODO Combat
+**** TODO AI
+**** TODO Key and mouse rebinds
+**** TODO Resource loading
+**** TODO Resource use
+**** TODO File IO
+**** TODO Network IO
+**** TODO Menu modifications
+** TODO Models/Animations
+*** TODO Water
+*** TODO Lava
+*** TODO Fire
+*** TODO Brick wall
+*** TODO Car
+**** TODO Truck
+**** TODO Focus
+**** TODO Sportcar
+**** TODO Van
+**** TODO Cycle
+*** TODO NPC
+*** TODO Sword
+**** TODO Dagger
+**** TODO Bastard
+**** TODO Longsword
+**** TODO Mace
+**** TODO Axe
+*** TODO Gun
+**** TODO Pistols
+**** TODO Shotgun
+**** TODO AK
+*** TODO Plasma ball
+*** TODO Lamp
+*** TODO Office light
+*** TODO Player
+** TODO Audio
+*** TODO Water
+*** TODO Lava
+*** TODO Fire
+*** TODO Sword
+**** TODO Swing
+**** TODO Clash
+**** TODO Scraping
+**** TODO Stabing
+*** TODO Gun
+**** TODO Fit gun with sounds
+*** TODO Car
+**** TODO Engines
+**** TODO Revings
+**** TODO Breaks
+*** TODO Plasma
+*** TODO Buzzing
+*** TODO Background music
+**** TODO Basic battle
+**** TODO Boss battle
+**** TODO Title music
+**** TODO Calm music
+**** TODO Win music
+**** TODO Lose music
+**** TODO Award music
+**** TODO Steping
+**** TODO Screems
+** TODO Images
+*** TODO Title menu template
+*** TODO Swordf logo
+*** TODO Screenshots
+** TODO Testing
+
+
+
+* TODO Version 0.2 (fleshing out)
+** TODO 3D rotation
+** TODO Advance physics
+*** TODO Gravity
+**** TODO Work with upward vel
+**** TODO Make fall damage
+**** TODO Boxes that can hit each other and alter fall
+**** TODO Center of gravity
+** TODO Advance AI
+** TODO OOP to scripting
+** TODO Music
+*** TODO More level music
+*** TODO More sound fx
+** TODO Optimize
+** TODO Test more
+   

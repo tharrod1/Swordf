@@ -1,0 +1,17 @@
+key functions:
+add pooling logic (as in levels and states)
+use all basic functions of library
+
+
+keyBind <key> <func>: calls a func when key is pressed
+
+
+stdio:
+print <str>: prints a string with line feed
+get <buf>: stores a string into buffer
+read <file> <buf>: adds file data to string buffer 
+write <file> <buf>: writes string buffer to file
+bind <port>: binds a socket on port
+connect <host> <port>: connects to a host on port
+send <sock> <buf>: sends string buffer over socket
+recv <sock> <buf>: stores recieved data to string buffer
