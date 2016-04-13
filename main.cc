@@ -7,75 +7,25 @@ Swordf swordf;
 std::vector<HitBox> hbs;
 int fallTime;
 
-void onClick(){
-
-}
-
 void onClick(int button, int state, int x, int y){
-
+  //check if onclick script exists
 }
 
 void onAction(){
-
+  //check if onaction script exists
 }
 
 void onMouse(int x, int y){
-  swordf.camera.rotation += (x-swordf.mousePosition.x) * 0.001;
-  swordf.mousePosition.x = x;
+  //check if onmouse script exists
+  swordf.defaultOnMouseMove(x, y);
 }
 
 void onKey(Key key, int x, int y){
-  switch(key){
-  case KEY_A:
-  case KEY_a:
-    swordf.camera.left(1.0);
-    break;
-  case KEY_D:
-  case KEY_d:
-    swordf.camera.right(1.0);
-    break;
-  case KEY_W:
-    swordf.camera.forward(2.5);
-    break;
-  case KEY_w:
-    swordf.camera.forward(1.0);
-    break;
-  case KEY_S:
-  case KEY_s:
-    swordf.camera.backward(0.5);
-    break;
-  case KEY_e:
-    onAction();
-    break;
-  case KEY_f:
-    glutFullScreen();
-    break;
-  case KEY_SPACE:
-    swordf.camera.y += 8;
-      break;
-  case KEY_ESCAPE:
-    exit(0); // FIXME: change to exit menu unless in config
-    break;
-  default:
-    break;
-  }
+  swordf.defaultOnKey(key);
 }
 
 void offKey(Key key, int x, int y){
-  switch(key){
-  case KEY_A:
-  case KEY_a:
-  case KEY_D:
-  case KEY_d:
-  case KEY_W:
-  case KEY_w:
-  case KEY_S:
-  case KEY_s:
-    swordf.camera.up();
-    break;
-  default:
-    break;
-  }
+  swordf.defaultOffKey(key);
 }
 
 void logic(){

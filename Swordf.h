@@ -51,6 +51,77 @@ class Swordf {
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
   }
 
+  void writeStr(char *str, void *font, GLfloat x, GLfloat y, GLfloat z){
+    char *c;
+    glRasterPos3f(x, y, z);
+    for(c=str; *c != '\0'; c++){
+      glutBitmapCharacter(font, *c);
+    }
+  }
+
+  void defaultOnMouseMove(int x, int y){
+    camera.rotation += (x-mousePosition.x) * 0.001;
+    mousePosition.x = x;
+  }
+
+  void defaultOnAction(){
+
+  }
+
+  void defaultOnKey(Key key){
+    switch(key){
+    case KEY_A:
+    case KEY_a:
+      camera.left(1.0);
+      break;
+    case KEY_D:
+    case KEY_d:
+      camera.right(1.0);
+      break;
+    case KEY_W:
+      camera.forward(2.5);
+      break;
+    case KEY_w:
+      camera.forward(1.0);
+      break;
+    case KEY_S:
+    case KEY_s:
+      camera.backward(0.5);
+      break;
+    case KEY_e:
+      defaultOnAction();
+      break;
+    case KEY_f:
+      glutFullScreen();
+      break;
+    case KEY_SPACE:
+      camera.y += 8;
+      break;
+    case KEY_ESCAPE:
+      exit(0); // FIXME: change to exit menu unless in config
+      break;
+    default:
+      break;
+    }
+  }
+
+  void defaultOffKey(Key key){
+    switch(key){
+    case KEY_A:
+    case KEY_a:
+    case KEY_D:
+    case KEY_d:
+    case KEY_W:
+    case KEY_w:
+    case KEY_S:
+    case KEY_s:
+      camera.up();
+      break;
+    default:
+      break;
+    }
+  }
+
   void defaultResize(GLsizei width, GLsizei height){
     if (height == 0) height = 1;
     GLfloat aspect = (GLfloat)width / (GLfloat)height;
