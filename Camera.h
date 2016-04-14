@@ -10,6 +10,7 @@ enum Direction {
 class Camera {
  private:
   Direction dir;
+  int w, h;
   
  public:
   GLfloat x, y, z, c, rotation;
@@ -30,6 +31,11 @@ class Camera {
     dir = none;
   }
 
+  void setDims(int width, int height){
+    w = width;
+    h = height;
+  }
+  
   GLfloat getXLook(){
     return x+sin(rotation);
   }
@@ -83,5 +89,8 @@ class Camera {
     default:
       break;
     }
+
+    glutSetCursor(GLUT_CURSOR_NONE);
+    glutWarpPointer(w/2, h/2);
   }
 };

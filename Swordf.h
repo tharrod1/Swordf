@@ -1,9 +1,13 @@
 #pragma once
+#include <vector>
 #include <GL/glut.h>
+#include <GL/glfw.h>
 #include "Camera.h"
 #include "AudioPool.h"
 #include "CollisionGun.h"
 #include "Light.h"
+#include "Object.h"
+#include "error.h"
 
 #define KEY_A 65
 #define KEY_a 97
@@ -20,19 +24,27 @@
 
 typedef unsigned char Key;
 
-typedef struct mousepos_t {
-  int x, y;
-}MousePosition;
-
 class Swordf {
  private:
-
+  int fallTime; //used for camera
+  
  public:
   Camera camera;
   AudioPool audioPool;
-  MousePosition mousePosition;
   Light mainLight;
   LightPool lightPool;
+  CollisionGun collisionGun;
+  std::vector<Object> objectPool;
+  int windowWidth, windowHeight; //makes sense to be unsigned, but glutGet returns and int
+
+  Swordf(){
+    fallTime = 0;
+  }
+  
+  void calcDims(){
+    windowWidth = glutGet(GLUT_WINDOW_WIDTH);
+    windowHeight = glutGet(GLUT_WINDOW_HEIGHT);
+  }
   
   void initGL(int argc, char **argv, char *title){
     glutInit(&argc, argv);
@@ -49,9 +61,11 @@ class Swordf {
     glDepthFunc(GL_LEQUAL);
     glShadeModel(GL_SMOOTH);  
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+    msg("Swordf game initialized.\n", __DATE__, __TIME__, __FILE__, __LINE__);
   }
 
-  void writeStr(char *str, void *font, GLfloat x, GLfloat y, GLfloat z){
+  void writeStr(char *str, void *font,
+		GLfloat x, GLfloat y, GLfloat z){
     char *c;
     glRasterPos3f(x, y, z);
     for(c=str; *c != '\0'; c++){
@@ -60,8 +74,7 @@ class Swordf {
   }
 
   void defaultOnMouseMove(int x, int y){
-    camera.rotation += (x-mousePosition.x) * 0.001;
-    mousePosition.x = x;
+    camera.rotation += (x-windowWidth/2) * 0.001;
   }
 
   void defaultOnAction(){
@@ -131,6 +144,13 @@ class Swordf {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(45.0f, aspect, 0.1f, 100.0f);
+    calcDims();
+  }
+
+  void defaultLogic(){
+    camera.setDims(windowWidth, windowHeight);
+    camera.update();
+    mainLight.update();
   }
 
   void drawCube(){
@@ -168,5 +188,40 @@ class Swordf {
     glVertex3f(1.0f, -1.0f,  1.0f);
     glVertex3f(1.0f, -1.0f, -1.0f);
     glEnd();
+  }
+
+  void gravity(std::vector<HitBox> boxes, GLfloat lowest, GLfloat gc){
+    HitBox hb;
+    hb.x = camera.x;
+    hb.y = camera.y - gc;
+    hb.z = camera.z;
+    hb.width = 0.0;
+    hb.height = 0.0;
+    hb.depth = 0.0;
+  
+    unsigned int nbox = boxes.size() - 1;
+    while(nbox > -1){
+      if(collisionGun.boxCollision(hb, boxes[nbox])){
+	fallTime = 0;
+	return;
+      }
+    }
+
+    ++fallTime;
+    GLfloat gv = (gc * ((GLfloat)fallTime) * ((GLfloat)fallTime)) / (60*60*60*60);
+
+    if(gv > 195000) gv = 195000;
+  
+    camera.y -= gv;
+    if(camera.y < lowest){
+      camera.y = lowest;
+      fallTime = 0;
+    }
+  }
+
+  void gravity(std::vector<HitBox> boxes, GLfloat lowest,
+	       GLfloat gc, int *fallTime){
+    //make boxes stack and/or fall
+    //add center of gravity
   }
 };

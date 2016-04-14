@@ -12,7 +12,6 @@
 **** DONE Click events
 *** DONE Music pool
 *** DONE Basic lighting
-*** TODO Picture planes
 *** TODO Obj/mtl loader
 *** TODO Object pool
 *** TODO 3rd person view

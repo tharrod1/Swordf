@@ -10,6 +10,8 @@ typedef struct bullet_t {
 class HitBox {
 public:
   GLfloat x, y, z, width, height, depth;
+  int fallTime;
+
   HitBox(){}
   HitBox(GLfloat ix, GLfloat iy, GLfloat iz,
 	 GLfloat iw, GLfloat ih, GLfloat id){

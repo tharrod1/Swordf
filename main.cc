@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <GL/glut.h>
 #include "Swordf.h"
-#include "gravity.h"
 
 Swordf swordf;
 std::vector<HitBox> hbs;
-int fallTime;
 
 void onClick(int button, int state, int x, int y){
   //check if onclick script exists
@@ -29,14 +27,13 @@ void offKey(Key key, int x, int y){
 }
 
 void logic(){
-  swordf.camera.y = gravity(swordf.camera, hbs, 0.5, 0.1, &fallTime);
-  swordf.camera.update();
-  swordf.mainLight.update();
+  swordf.gravity(hbs, 0.5, 0.1);
+  swordf.defaultLogic();
 }
 
 void display(){
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  glMatrixMode(GL_MODELVIEW);  
+  glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
   logic(); //more optimized if two seperate functions are called, but this makes less weird lag IMO
@@ -54,7 +51,6 @@ void reshape(GLsizei width, GLsizei height){
 
 int main(int argc, char **argv){
   swordf.initGL(argc, argv, "Swordf");
-  fallTime = 0;
   hbs.push_back(HitBox(0, -3, 0, 10, 10, 1));
   
   glutDisplayFunc(display);
