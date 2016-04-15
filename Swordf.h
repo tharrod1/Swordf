@@ -11,14 +11,25 @@
 
 #define KEY_A 65
 #define KEY_a 97
+
 #define KEY_d 100
 #define KEY_D 68
-#define KEY_W 87
-#define KEY_w 119
+
+#define KEY_e 101
+#define KEY_E 69
+
+#define KEY_f 102
+#define KEY_F 70
+
 #define KEY_S 83
 #define KEY_s 115
-#define KEY_e 101
-#define KEY_f 102
+
+#define KEY_W 87
+#define KEY_w 119
+
+#define KEY_T 84
+#define KEY_t 116
+
 #define KEY_SPACE 32
 #define KEY_ESCAPE 27
 
@@ -64,7 +75,7 @@ class Swordf {
     msg("Swordf game initialized.\n", __DATE__, __TIME__, __FILE__, __LINE__);
   }
 
-  void writeStr(char *str, void *font,
+  void drawStr(char *str, void *font,
 		GLfloat x, GLfloat y, GLfloat z){
     char *c;
     glRasterPos3f(x, y, z);
@@ -101,11 +112,17 @@ class Swordf {
     case KEY_s:
       camera.backward(0.5);
       break;
+    case KEY_E:
     case KEY_e:
       defaultOnAction();
       break;
+    case KEY_F:
     case KEY_f:
       glutFullScreen();
+      break;
+    case KEY_T:
+    case KEY_t:
+      camera.switchMode();
       break;
     case KEY_SPACE:
       camera.y += 8;
@@ -151,6 +168,11 @@ class Swordf {
     camera.setDims(windowWidth, windowHeight);
     camera.update();
     mainLight.update();
+
+    //check if third person
+  gluLookAt(camera.x, camera.y, camera.z,
+	    camera.getXLook(), camera.y, camera.getZLook(),
+	    0.0, camera.y, 0.0);
   }
 
   void drawCube(){

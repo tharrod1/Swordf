@@ -37,11 +37,9 @@ void display(){
   glLoadIdentity();
 
   logic(); //more optimized if two seperate functions are called, but this makes less weird lag IMO
-  
-  gluLookAt(swordf.camera.x, swordf.camera.y, swordf.camera.z,
-	    swordf.camera.getXLook(), swordf.camera.y, swordf.camera.getZLook(),
-	    0.0, swordf.camera.y, 0.0);
   swordf.drawCube();
+  swordf.drawStr("Test", GLUT_BITMAP_9_BY_15, 2, 1, 1);
+
   glutSwapBuffers();
 }
  

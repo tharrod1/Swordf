@@ -13,7 +13,7 @@
 *** DONE Music pool
 *** DONE Basic lighting
 *** TODO Obj/mtl loader
-*** TODO Object pool
+*** DONE Object pool
 *** TODO 3rd person view
 *** TODO Animation loader
 *** TODO Animation renderer

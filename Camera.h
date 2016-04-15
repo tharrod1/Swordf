@@ -7,6 +7,10 @@ enum Direction {
   fwd, bwd, lwd, rwd, none
 };
 
+enum CameraMode {
+  first, third
+};
+
 class Camera {
  private:
   Direction dir;
@@ -14,13 +18,15 @@ class Camera {
   
  public:
   GLfloat x, y, z, c, rotation;
-
+  CameraMode cameraMode;
+  
   Camera(GLfloat ix, GLfloat iy, GLfloat iz, GLfloat r){
     x = ix;
     y = iy;
     z = iz;
     rotation = r;
     dir = none;
+    cameraMode = first;
   }
 
   Camera(){
@@ -29,6 +35,11 @@ class Camera {
     z = 0.0;
     rotation = 0.0;
     dir = none;
+    cameraMode = first;
+  }
+
+  void switchMode(){
+    cameraMode = (cameraMode == first) ? third : first;
   }
 
   void setDims(int width, int height){
