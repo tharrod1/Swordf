@@ -2,10 +2,7 @@
 #include <math.h>
 #include <GL/glut.h>
 #define PI 3.14159265
-
-enum Direction {
-  fwd, bwd, lwd, rwd, none
-};
+#define RUN 2.8
 
 enum CameraMode {
   first, third
@@ -13,8 +10,9 @@ enum CameraMode {
 
 class Camera {
  private:
-  Direction dir;
   int w, h;
+  bool fwd, bwd, lwd, rwd;
+  std::vector <char> keys;
   
  public:
   GLfloat x, y, z, c, rotation;
@@ -25,8 +23,9 @@ class Camera {
     y = iy;
     z = iz;
     rotation = r;
-    dir = none;
+    c = 2.0;
     cameraMode = first;
+    fwd = bwd = lwd = rwd = false;
   }
 
   Camera(){
@@ -34,8 +33,9 @@ class Camera {
     y = 1.0;
     z = 0.0;
     rotation = 0.0;
-    dir = none;
+    c = 2.0;
     cameraMode = first;
+    fwd = bwd = lwd = rwd = false;
   }
 
   void switchMode(){
@@ -55,49 +55,48 @@ class Camera {
     return z-cos(rotation);
   }
 
-  void forward(GLfloat ic){
-    dir = fwd;
-    c = ic;
+  void down(char key){
+    keys.push_back(key);
   }
-
-  void backward(GLfloat ic){
-    dir = bwd;
-    c = ic;
-  }
-
-  void left(GLfloat ic){
-    dir = lwd;
-    c = ic;
-  }
-
-  void right(GLfloat ic){
-    dir = rwd;
-    c = ic;
-  }
-
-  void up(){
-    dir = none;
+  
+  void up(char key){
+    unsigned int lkeys = keys.size();
+    for(unsigned int i = 0; i < lkeys; i++){
+      if(key == 'w' || key == 'W'){
+	if(keys[i] == 'w' || keys[i] == 'W'){
+	  keys.erase(keys.begin()+i);
+	}
+      }else{
+	if(keys[i] == key){
+	  keys.erase(keys.begin()+i);
+	}
+      }
+    }
   }
 
   void update(){
-    switch(dir){
-    case fwd:
+    if(keys.empty()) return;
+    char curKey = keys.back();
+    
+    switch(curKey){
+    case 'W':
+      x += RUN * c * sin(rotation) * 0.01;
+      z -= RUN * c * cos(rotation) * 0.01;
+    case 'w':
       x += c * sin(rotation) * 0.01;
       z -= c * cos(rotation) * 0.01;
       break;
-    case bwd:
+    case 's':
       x -= c * sin(rotation) * 0.01;
       z += c * cos(rotation) * 0.01;
       break;
-    case lwd:
+    case 'a':
       x -= c * sin(rotation+PI/2) * 0.01;
       z += c * cos(rotation+PI/2) * 0.01;
       break;
-    case rwd:
+    case 'd':
       x -= c * sin(rotation-PI/2) * 0.01;
       z += c * cos(rotation-PI/2) * 0.01;
-      break;
-    default:
       break;
     }
 

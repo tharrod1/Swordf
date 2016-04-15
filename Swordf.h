@@ -96,21 +96,21 @@ class Swordf {
     switch(key){
     case KEY_A:
     case KEY_a:
-      camera.left(1.0);
+      camera.down('a');
       break;
     case KEY_D:
     case KEY_d:
-      camera.right(1.0);
+      camera.down('d');
       break;
     case KEY_W:
-      camera.forward(2.5);
+      camera.down('W');
       break;
     case KEY_w:
-      camera.forward(1.0);
+      camera.down('w');
       break;
     case KEY_S:
     case KEY_s:
-      camera.backward(0.5);
+      camera.down('s');
       break;
     case KEY_E:
     case KEY_e:
@@ -139,15 +139,21 @@ class Swordf {
     switch(key){
     case KEY_A:
     case KEY_a:
+      camera.up('a');
+      break;
     case KEY_D:
     case KEY_d:
+      camera.up('d');
+      break;
     case KEY_W:
+      camera.up('W');
+      break;
     case KEY_w:
+      camera.up('w');
+      break;
     case KEY_S:
     case KEY_s:
-      camera.up();
-      break;
-    default:
+      camera.up('s');
       break;
     }
   }
