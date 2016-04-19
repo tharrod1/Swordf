@@ -75,6 +75,9 @@ class Camera {
   }
 
   void update(){
+    glutSetCursor(GLUT_CURSOR_NONE);
+    glutWarpPointer(w/2, h/2);
+    
     if(keys.empty()) return;
     char curKey = keys.back();
     
@@ -99,8 +102,5 @@ class Camera {
       z += c * cos(rotation-PI/2) * 0.01;
       break;
     }
-
-    glutSetCursor(GLUT_CURSOR_NONE);
-    glutWarpPointer(w/2, h/2);
   }
 };

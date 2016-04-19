@@ -86,6 +86,7 @@ class Swordf {
 
   void defaultOnMouseMove(int x, int y){
     camera.rotation += (x-windowWidth/2) * 0.001;
+    fmod(camera.rotation, 2*PI);
   }
 
   void defaultOnAction(){
