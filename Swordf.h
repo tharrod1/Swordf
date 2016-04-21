@@ -33,6 +33,9 @@
 #define KEY_SPACE 32
 #define KEY_ESCAPE 27
 
+#define NEAR 0.1
+#define FAR 1000.0
+
 typedef unsigned char Key;
 
 void swordf_defaultOnPause(){
@@ -91,13 +94,14 @@ class Swordf {
     glutCreateWindow(title);
   
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f); 
-    glClearDepth(1.0f);                   
+    glClearDepth(1.0f);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glDepthFunc(GL_LEQUAL);
     glShadeModel(GL_SMOOTH);  
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+    gluPerspective(45.0f, (GLfloat)windowWidth/(GLfloat)windowHeight, NEAR, FAR);
     msg("Swordf game initialized.\n", __DATE__, __TIME__, __FILE__, __LINE__);
   }
 
@@ -186,14 +190,14 @@ class Swordf {
   }
 
   void defaultResize(GLsizei width, GLsizei height){
-    if (height == 0) height = 1;
+    if (height <= 0) height = 1;
     GLfloat aspect = (GLfloat)width / (GLfloat)height;
     
     glViewport(0.0f, 0.0f, width, height);
     
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(45.0f, aspect, 0.1f, 100.0f);
+    gluPerspective(45.0f, aspect, NEAR, FAR);
     calcDims();
   }
 
