@@ -34,7 +34,7 @@
 *** TODO Water
 *** TODO Lava
 *** TODO Fire
-*** TODO Brick wall
+*** DONE Brick wall
 *** TODO Car
 **** TODO Truck
 **** TODO Focus
@@ -42,14 +42,12 @@
 **** TODO Van
 **** TODO Cycle
 *** TODO NPC
-*** TODO Sword
-**** TODO Dagger
-**** TODO Bastard
-**** TODO Longsword
-**** TODO Mace
-**** TODO Axe
+*** DONE Sword
+**** DONE Dagger
+**** DONE Longsword
+**** DONE Axe
 *** TODO Gun
-**** TODO Pistols
+**** TODO Pistol
 **** TODO Shotgun
 **** TODO AK
 *** TODO Plasma ball
@@ -83,6 +81,11 @@
 **** TODO Award music
 **** TODO Steping
 **** TODO Screems
+*** TODO Ambiant sounds
+**** TODO Creek by house
+**** TODO Woods by house 
+**** TODO Coffee shop
+**** TODO Elevator music
 ** TODO Images
 *** DONE Swordf logo
 *** TODO Screenshots
