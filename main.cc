@@ -7,6 +7,12 @@ std::vector<HitBox> hbs;
 
 void onClick(int button, int state, int x, int y){
   //check if onclick script exists
+  //check if onscroll script exists
+  if(button == 3 || button == 4 && state != GLUT_UP){
+    int delt = -1;
+    if(button == 3) delt = 1; 
+    swordf.defaultScroll(delt);
+  }
 }
 
 void onAction(){

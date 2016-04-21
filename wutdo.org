@@ -12,12 +12,9 @@
 **** DONE Click events
 *** DONE Music pool
 *** DONE Basic lighting
-*** TODO Obj/mtl loader
+*** DONE Obj/mtl loader
 *** DONE Object pool
-*** TODO 3rd person view
-*** TODO Animation loader
-*** TODO Animation renderer
-*** TODO Animation pool
+*** DONE 3rd person view
 *** TODO AI
 **** TODO Follow entity
 **** TODO A*
@@ -25,6 +22,7 @@
 **** TODO Combat engine
 *** TODO Menu
 *** TODO Scripting
+**** TODO Map altering
 **** TODO Combat
 **** TODO AI
 **** TODO Key and mouse rebinds
@@ -87,15 +85,14 @@
 **** TODO Steping
 **** TODO Screems
 ** TODO Images
-*** TODO Title menu template
-*** TODO Swordf logo
+*** DONE Swordf logo
 *** TODO Screenshots
 ** TODO Testing
 
-
-
 * TODO Version 0.2 (fleshing out)
-** TODO 3D rotation
+** TODO Optimize object loader
+*** TODO Draw with mtl instead of just triangles
+** TODO Animation loader
 ** TODO Advance physics
 *** TODO Gravity
 **** TODO Work with upward vel
@@ -103,10 +100,12 @@
 **** TODO Boxes that can hit each other and alter fall
 **** TODO Center of gravity
 ** TODO Advance AI
+** TODO Map pool
+*** TODO Read from file
+*** TODO Drawing data
 ** TODO OOP to scripting
 ** TODO Music
 *** TODO More level music
 *** TODO More sound fx
-** TODO Optimize
 ** TODO Test more
    

@@ -79,11 +79,17 @@ public:
 	//just going to treat as a comment
       }
     }
-
-    //similar method for mtl
   }
 
   void draw(){
-    //draw at [x, y, z] rotated xr, yr, and zr
+    unsigned int sfaces = faces.size();
+    glBegin(GL_TRIANGLES);
+    
+    for(int i = 0; i < sfaces; i++){
+      //glColor3f for uv
+      glVertex3f(verts[i].x, verts[i].y, verts[i].z);
+    }
+
+    glEnd();
   }
 };

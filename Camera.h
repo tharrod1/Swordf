@@ -15,7 +15,7 @@ class Camera {
   std::vector <char> keys;
   
  public:
-  GLfloat x, y, z, c, rotation;
+  GLfloat x, y, z, c, rotation, distance;
   CameraMode cameraMode;
   
   Camera(GLfloat ix, GLfloat iy, GLfloat iz, GLfloat r){
@@ -23,6 +23,7 @@ class Camera {
     y = iy;
     z = iz;
     rotation = r;
+    distance = 5.0;
     c = 2.0;
     cameraMode = first;
     fwd = bwd = lwd = rwd = false;
@@ -33,6 +34,7 @@ class Camera {
     y = 1.0;
     z = 0.0;
     rotation = 0.0;
+    distance = 5.0;
     c = 2.0;
     cameraMode = first;
     fwd = bwd = lwd = rwd = false;
@@ -48,11 +50,11 @@ class Camera {
   }
   
   GLfloat getXLook(){
-    return x+sin(rotation);
+    return x+distance*sin(rotation);
   }
 
   GLfloat getZLook(){
-    return z-cos(rotation);
+    return z-distance*cos(rotation);
   }
 
   void down(char key){
@@ -80,6 +82,8 @@ class Camera {
     
     if(keys.empty()) return;
     char curKey = keys.back();
+
+    if(cameraMode == third) c = -c;
     
     switch(curKey){
     case 'W':
@@ -102,5 +106,7 @@ class Camera {
       z += c * cos(rotation-PI/2) * 0.01;
       break;
     }
+
+    if(cameraMode == third) c = -c;
   }
 };

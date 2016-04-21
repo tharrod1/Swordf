@@ -1,12 +1,12 @@
 #pragma once
 #include <vector>
 #include <GL/glut.h>
-#include <GL/glfw.h>
 #include "Camera.h"
 #include "AudioPool.h"
 #include "CollisionGun.h"
 #include "Light.h"
 #include "Object.h"
+#include "Physics.h"
 #include "error.h"
 
 #define KEY_A 65
@@ -56,6 +56,14 @@ class Swordf {
     windowWidth = glutGet(GLUT_WINDOW_WIDTH);
     windowHeight = glutGet(GLUT_WINDOW_HEIGHT);
   }
+
+  void togglePause(){
+    
+  }
+
+  void setOnPause(){
+    
+  }
   
   void initGL(int argc, char **argv, char *title){
     glutInit(&argc, argv);
@@ -76,7 +84,7 @@ class Swordf {
   }
 
   void drawStr(char *str, void *font,
-		GLfloat x, GLfloat y, GLfloat z){
+	       GLfloat x, GLfloat y, GLfloat z){
     char *c;
     glRasterPos3f(x, y, z);
     for(c=str; *c != '\0'; c++){
@@ -171,15 +179,28 @@ class Swordf {
     calcDims();
   }
 
+  void defaultScroll(int delt){
+    GLfloat dist = camera.distance;
+    dist -= delt * 0.5;
+    if(dist > 50 || dist < 1) return;
+    camera.distance = dist;
+  }
+
   void defaultLogic(){
     camera.setDims(windowWidth, windowHeight);
     camera.update();
     mainLight.update();
 
-    //check if third person
-  gluLookAt(camera.x, camera.y, camera.z,
-	    camera.getXLook(), camera.y, camera.getZLook(),
-	    0.0, camera.y, 0.0);
+    if(camera.cameraMode == first){
+      gluLookAt(camera.x, camera.y, camera.z,
+		camera.getXLook(), camera.y, camera.getZLook(),
+		0.0, camera.y, 0.0);
+    }else{
+      //scroll mouse weel changes distance
+      gluLookAt(camera.getXLook(), camera.y, camera.getZLook(),
+		camera.x, camera.y, camera.z,
+		0.0, camera.y, 0.0);
+    }
   }
 
   void drawCube(){
@@ -246,11 +267,5 @@ class Swordf {
       camera.y = lowest;
       fallTime = 0;
     }
-  }
-
-  void gravity(std::vector<HitBox> boxes, GLfloat lowest,
-	       GLfloat gc, int *fallTime){
-    //make boxes stack and/or fall
-    //add center of gravity
   }
 };
