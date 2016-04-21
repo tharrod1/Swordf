@@ -1,0 +1,17 @@
+#comment (ignore line)
+#.i for info
+.i 
+#identifier (one char), collidable 0/1, isfloor (uses spaces until other floor char is read) 0/1, path (to obj), hitbox bounds (width, height, depth), y position, rotations
+#p is always player
+b 1 0 box.obj 5 5 5 0 0 0 0
+f 0 1 floor.obj 5 5 5 0 0 0 0
+e 0 0 enemy.obj 1 1 1 0.1 0 0 0
+
+#.d for data
+f
+#f is now the floor until another floor item is called
+bbbbbbbbbb
+be                  b
+b           p       b
+b                     b
+bbbbbbbbbb

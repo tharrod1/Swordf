@@ -2,16 +2,45 @@ key functions:
 add pooling logic (as in levels and states)
 use all basic functions of library
 
-
 keyBind <key> <func>: calls a func when key is pressed
+getItem <key>: gives item to perform logic on
+getMap <name>: gets data of selected map
+drawMap <data>: draws map from data
+menu <img>: draws image and uses onpause func (which should set input logic)
+STATE: unsigned int value of game state
 
+setOnKeyDown <func key>
+setOnKeyUp <func key>
+setOnScroll <func dist>
+setOnClick <func x y>
+setOnPause <func>
+
+T: true
+F: false
+cmp <val> <val>
+jeq <label>
+jne <label>
+jor <label>
+
+: <label>
+
+str <label> <len>
+int <label> <num> 
+uint <label> <num>
+f <label> <num>
+uf <label> <num>
+inFile <label> <path>
+outFile <label> <path>
+client <label> <host> <port>
+server <label> <port>
 
 stdio:
 print <str>: prints a string with line feed
 get <buf>: stores a string into buffer
 read <file> <buf>: adds file data to string buffer 
 write <file> <buf>: writes string buffer to file
-bind <port>: binds a socket on port
-connect <host> <port>: connects to a host on port
+bind <server>: binds a socket on port given by server label
+connect <client>: connects to a host on port given by client label
 send <sock> <buf>: sends string buffer over socket
 recv <sock> <buf>: stores recieved data to string buffer
+close <sock>

@@ -35,9 +35,15 @@
 
 typedef unsigned char Key;
 
+void swordf_defaultOnPause(){
+  //add escape option menu
+}
+
 class Swordf {
  private:
   int fallTime; //used for camera
+  bool paused;
+  void (*pauseFunc)(void);
   
  public:
   Camera camera;
@@ -47,9 +53,15 @@ class Swordf {
   CollisionGun collisionGun;
   std::vector<Object> objectPool;
   int windowWidth, windowHeight; //makes sense to be unsigned, but glutGet returns and int
+  unsigned int gameState;
+  char *pausePath;
 
   Swordf(){
+    gameState = 0;
+    paused = false;
     fallTime = 0;
+    pauseFunc = swordf_defaultOnPause;
+    pausePath = "pics/pause.png";
   }
   
   void calcDims(){
@@ -58,11 +70,17 @@ class Swordf {
   }
 
   void togglePause(){
-    
+    paused = !paused;
+    if(paused) pauseFunc();
   }
 
-  void setOnPause(){
-    
+  void setOnPause(void (*func)(void)){
+    pauseFunc = func;
+  }
+
+  void menu(char *path){
+    togglePause();
+    //set a background image
   }
   
   void initGL(int argc, char **argv, char *title){
@@ -137,7 +155,7 @@ class Swordf {
       camera.y += 8;
       break;
     case KEY_ESCAPE:
-      exit(0); // FIXME: change to exit menu unless in config
+      menu(pausePath);
       break;
     default:
       break;
