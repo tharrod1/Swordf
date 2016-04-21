@@ -16,10 +16,16 @@ class Map {
   }
   
   void fromString(char *data){
+    if(!dataSec){
+      if(data[0] == ':') dataSec = true;
+    }
+    
     unsigned int datalen = strlen(data);
     for(unsigned int i = 0; i < datalen; i++){
-      if(!dataSec){
-	if(data[0] == ':') dataSec = true;
+      if(dataSec){
+
+      }else{
+	
       }
     }
   }

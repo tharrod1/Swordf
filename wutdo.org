@@ -82,14 +82,17 @@
 **** TODO Steping
 **** TODO Screems
 *** TODO Ambiant sounds
+**** DONE Office
 **** TODO Creek by house
 **** TODO Woods by house 
 **** TODO Coffee shop
 **** TODO Elevator music
-** TODO Images
-*** DONE Swordf logo
-*** TODO Screenshots
+** DONE Swordf logo
 ** TODO Testing
+** TODO Make example game
+*** TODO Use simple script code only
+*** TODO Screenshots
+
 
 * TODO Version 0.2 (fleshing out)
 ** TODO Optimize object loader
