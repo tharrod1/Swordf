@@ -7,6 +7,7 @@ typedef struct bullet_t {
   GLfloat x, y, z, yr, v, g;
 } Bullet;
 
+//could be a struct, but idk if I'll change it yet
 class HitBox {
 public:
   GLfloat x, y, z, width, height, depth;
@@ -21,6 +22,11 @@ public:
     width = iw;
     height = ih;
     depth = id;
+  }
+
+  HitBox clone(){
+    HitBox hb(x, y, z, width, height, depth);
+    return hb;
   }
 };
 

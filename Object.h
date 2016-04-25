@@ -93,3 +93,5 @@ public:
     glEnd();
   }
 };
+
+typedef std::vector<Object> ObjectPool;

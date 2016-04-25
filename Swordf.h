@@ -6,6 +6,7 @@
 #include "CollisionGun.h"
 #include "Light.h"
 #include "Object.h"
+#include "Map.h"
 #include "Physics.h"
 #include "error.h"
 
@@ -54,7 +55,7 @@ class Swordf {
   Light mainLight;
   LightPool lightPool;
   CollisionGun collisionGun;
-  std::vector<Object> objectPool;
+  ObjectPool objectPool;
   int windowWidth, windowHeight; //makes sense to be unsigned, but glutGet returns and int
   unsigned int gameState;
   char *pausePath;

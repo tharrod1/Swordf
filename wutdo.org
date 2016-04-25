@@ -15,7 +15,6 @@
 *** DONE Obj/mtl loader
 *** DONE Object pool
 *** DONE 3rd person view
-*** TODO Menu
 *** TODO AI
 **** TODO A* (for finding closest hitbox)
 **** TODO Simple follow (uses a*)
