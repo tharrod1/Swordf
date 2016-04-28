@@ -1,6 +1,6 @@
 ARGS = -O3 -Wno-write-strings -Wno-format
 LNK = -lGL -lGLU -lglut -lsfml-audio -lpthread
-OBJS = Swordf.o Light.o AudioPool.o Map.o CollisionGun.o error.o
+OBJS = Swordf.o Light.o AudioPool.o Map.o CollisionGun.o Camera.o Object.o error.o
 
 all: $(OBJS) main clean
 
@@ -22,6 +22,12 @@ Map.o:
 
 CollisionGun.o:
 	g++ -c CollisionGun.cc $(ARGS)
+
+Camera.o:
+	g++ -c Camera.cc $(ARGS)
+
+Object.o:
+	g++ -c Object.cc $(ARGS)
 
 error.o:
 	g++ -c error.c $(ARGS)
