@@ -15,21 +15,21 @@
 // TODO: smallmap files (number <char to repeat>)
 
 class MapToken {
-public:
+ public:
   char identifier;
   bool collidable, isFloor;
   char *path;
   HitBox hitBox;
   GLfloat rotation;
 
-  MapToken clone(){
-    MapToken mt;
-    mt.identifier = identifier;
-    mt.collidable = collidable;
-    mt.isFloor = isFloor;
-    mt.path = path; //make sure this stays safe
-    mt.hitBox = hitBox.clone();
-    mt.rotation = rotation;
+  MapToken *clone(){
+    MapToken *mt = new MapToken();
+    mt->identifier = identifier;
+    mt->collidable = collidable;
+    mt->isFloor = isFloor;
+    mt->path = path; //make sure this stays safe
+    mt->hitBox = hitBox.clone();
+    mt->rotation = rotation;
     return mt;
   }
   
@@ -45,7 +45,7 @@ class Map {
   AudioPool *audioPool;
   LightPool *lightPool;
   ObjectPool *objectPool;
-  std::vector<MapToken*> toks;
+  std::vector<MapToken*> toks, updateToks;
   GLfloat x, z;
 
   unsigned int nextSpace(char *str, unsigned int start){
@@ -76,11 +76,12 @@ class Map {
 
   ~Map(){
     unsigned int tokss = toks.size();
-    for(unsigned int i = 0; i < tokss; i++){
-      delete toks[i];
-    }
+    for(unsigned int i = 0; i < tokss; i++) delete toks[i];
+    tokss = updateToks.size();
+    for(unsigned int i = 0; i < tokss; i++) delete updateToks[i];
 
     toks.clear();
+    updateToks.clear();
   }
   
   void fromString(char *data){
@@ -139,13 +140,21 @@ class Map {
 	toks.push_back(mt);
 	free(num);
       }else{
-	//clone mt
-	//mt->hitBox.x = x;
-	//mt->hitBox.z = z;
+        unsigned int linelen = strlen(data), tokss = toks.size();
+	for(int i = 0; i < linelen; i++){
+	  for(int ti = 0; ti < toks.size(); i++){
+	    if(toks[ti]->identifier == data[i]){
+	      MapToken *mt = toks[ti]->clone();
+	      mt->hitBox.x = x;
+	      mt->hitBox.z = z;
+	      updateToks.push_back(mt);
+	    }
+	  }
+	}
       }
     }
   }
-
+  
   void fromString(std::string data){
     fromString((char*)data.c_str());
   }
@@ -159,6 +168,10 @@ class Map {
     }
   }
 
+  void load(){
+
+  }
+  
   void update(){
     
   }

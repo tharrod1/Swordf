@@ -1,19 +1,32 @@
 key functions:
-add pooling logic (as in levels and states)
-use all basic functions of library
-
 keyBind <key> <func>: calls a func when key is pressed
-getItem <key>: gives item to perform logic on
-getMap <name>: gets data of selected map
+ex: keyBind j jumpFunc
+
+map functions:
+addMap <name>: adds map data to map pool
+getMap <id>: gets data of selected map
 drawMap <data>: draws map from data
-menu <img>: draws image and uses onpause func (which should set input logic)
+delMap <name>: deletes a map from memory
+ex:{
+getMap "dungeon.txt"
+drawMap RET
+}
+
 STATE: unsigned int value of game state
+ex: jne STATE 1
 
 setOnKeyDown <func key>
 setOnKeyUp <func key>
 setOnScroll <func dist>
 setOnClick <func x y>
 setOnPause <func>
+ex: setOnClick clickFunc
+
+RET: last returned value
+ex:{
+logicFunc
+uint STATE RET
+}
 
 T: true
 F: false
@@ -21,9 +34,17 @@ cmp <val> <val>
 jeq <label>
 jne <label>
 jor <label>
+ex:{
+cmp STATE 10
+jeq exit
+} 
 
 : <label>
+ex:{
+:processStuff
+}
 
+defines a variable, sets a variable if already defined
 str <label> <len>
 int <label> <num> 
 uint <label> <num>
@@ -33,14 +54,24 @@ inFile <label> <path>
 outFile <label> <path>
 client <label> <host> <port>
 server <label> <port>
+list <label>
+ex: f pi 3.14159
 
 stdio:
-print <str>: prints a string with line feed
-get <buf>: stores a string into buffer
-read <file> <buf>: adds file data to string buffer 
-write <file> <buf>: writes string buffer to file
+toStr <var>
+
+gets <str>: gets char from string
+sets <str> <i> <c>: sets char (c) at i in string
+setss <str> <str>: sets string from string
 bind <server>: binds a socket on port given by server label
 connect <client>: connects to a host on port given by client label
 send <sock> <buf>: sends string buffer over socket
 recv <sock> <buf>: stores recieved data to string buffer
 close <sock>
+ex:{
+str hi 3
+sets hi 0 h
+sets hi 1 i
+print hi
+}
+hardcoded strings should be avoided (android thing for some reason, but applies here since it would make files more organized)

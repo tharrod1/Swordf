@@ -66,6 +66,7 @@ class Swordf {
     fallTime = 0;
     pauseFunc = swordf_defaultOnPause;
     pausePath = "pics/pause.png";
+    mainLight.set(1.0, 10.0, 5.0);
   }
   
   void calcDims(){
@@ -99,6 +100,7 @@ class Swordf {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
+    glShadeModel(GL_SMOOTH);
     glDepthFunc(GL_LEQUAL);
     glShadeModel(GL_SMOOTH);  
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);

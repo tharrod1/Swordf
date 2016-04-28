@@ -15,6 +15,7 @@
 *** DONE Obj/mtl loader
 *** DONE Object pool
 *** DONE 3rd person view
+*** DONE Map
 *** TODO AI
 **** TODO A* (for finding closest hitbox)
 **** TODO Simple follow (uses a*)
@@ -72,7 +73,7 @@
 *** TODO Buzzing
 *** TODO Background music
 **** TODO Basic battle
-**** TODO Boss battle
+**** DONE Boss battle
 **** TODO Title music
 **** TODO Calm music
 **** TODO Win music
@@ -96,6 +97,7 @@
 * TODO Version 0.2 (fleshing out)
 ** TODO Optimize object loader
 *** TODO Draw with mtl instead of just triangles
+** TODO More light types
 ** TODO Animation loader
 ** TODO Advance physics
 *** TODO Gravity
@@ -104,12 +106,14 @@
 **** TODO Boxes that can hit each other and alter fall
 **** TODO Center of gravity
 ** TODO Advance AI
-** TODO Map pool
-*** TODO Read from file
-*** TODO Drawing data
 ** TODO OOP to scripting
 ** TODO Music
 *** TODO More level music
 *** TODO More sound fx
 ** TODO Test more
-   
+** TODO Additional output formats
+*** TODO Windows
+*** TODO MSDOS
+*** TODO Chrome Packaged App
+*** TODO Android app
+*** TODO Run in emacs
