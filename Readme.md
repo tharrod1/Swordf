@@ -1,5 +1,5 @@
 # Swordf
-![Swordf Logo](/pics/swordflogo.png)
+![Swordf Logo](/bin/pics/swordflogo.png)
 
 A simple game engine with many fast functions.
 
